@@ -1,68 +1,71 @@
-package Cadastros;
-public class Clientes {
-    private String nome;
-    private String email;
-    private String endereco;
+package cadastros;
+
+import java.util.ArrayList;
+
+public final class Clientes extends Pessoa implements ClienteInterface{
+    private String id;
     private String cpf;
     private String rg;
+    private String nome;
     private String telefone;
-
-public void setClientes(String nome, String email, String endereco, String cpf, String rg, String telefone){
-this.setNome(nome);
-this.setEmail(email);
-this.setEndereco(endereco);
-this.setCpf(cpf);
-this.setRg(rg);
-this.setTelefone(telefone);
-
+    private String endereco;
+    private static ArrayList<Cliente> listCliente;
+    
+    public Clientes(String id, String nome, String cpf, String rg, String email, String telefone, String endereco){
+        this.setId(id);
+        this.setNome(nome);
+        this.setCpf(cpf);
+        this.setRg(rg);
+        this.setEmail(email);
+        this.setTelefone(telefone);
+        this.setEndereco(endereco);
+        
+    }   
+    
+    public String getId(){
+        return id;
     }
-
-    public String getNome() {
-        return nome;
+    
+    public void setId(String id){
+        this.id = id;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
+    
     public String getCpf() {
         return cpf;
     }
-
+    
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
+    
     public String getRg() {
         return rg;
     }
-
+    
     public void setRg(String rg) {
         this.rg = rg;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public static void setListCliente(Cliente cliente){
+        if(!(listCliente instanceof ArrayList)){
+            listCliente = new ArrayList<>();
+        }
+        listCliente.add(cliente);
+        
+    }
+    
+    public static ArrayList<Cliente> getListCliente(){
+        return listCliente;
+    }
+    
+    public static boolean remove(String id){
+        for (Cliente c : listCliente) {
+            if (c.getId().equals(id)) {
+                listCliente.remove(c);
+                return true;
+            }
+        }
+        return false;
     }
 }
-
