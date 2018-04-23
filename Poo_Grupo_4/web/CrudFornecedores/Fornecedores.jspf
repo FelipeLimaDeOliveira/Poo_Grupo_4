@@ -1,0 +1,78 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="br.com.fatecpg.bd.Bd"%>
+<%@page import="br.com.fatecpg.bd.Contato"%>
+<%@page pageEncoding="UTF-8" %>
+
+<% 
+     Contato f = new Contato();
+     int index = 0;
+    
+    try{
+       
+        if (request.getParameter("add") != null){
+        //Contato f = new Contato();
+        f.setNome(request.getParameter("nome"));
+        f.setRazao(request.getParameter("razao"));
+        f.setCnpj(request.getParameter("cnpj"));
+        f.setEmail(request.getParameter("email"));
+        f.setTelefone(request.getParameter("telefone"));
+        f.setEndereco(request.getParameter("endereco"));
+        
+        Bd.getFornecedoresList().add(f);
+        response.sendRedirect(request.getRequestURI());     
+        
+            } else {
+            if(request.getParameter("del") != null) {
+            Bd.getFornecedoresList().remove(Integer.parseInt(request.getParameter("i")));
+            response.sendRedirect(request.getRequestURI());
+            
+            } else {
+                if(request.getParameter("alterar") != null) {
+                    
+                    Contato tr = new Contato();
+                    tr.setNome(request.getParameter("nome"));
+                    tr.setRazao(request.getParameter("razao"));
+                    tr.setCnpj(request.getParameter("cnpj"));
+                    tr.setEmail(request.getParameter("email"));
+                    tr.setTelefone(request.getParameter("telefone"));
+                    tr.setEndereco(request.getParameter("endereco"));
+                    
+                    Bd.getFornecedoresList().add(tr);
+                    
+                    /*tr.setNome(Bd.getFornecedoresList().get(Integer.parseInt(request.getParameter("i"))).getNome());
+                    tr.setRazao(Bd.getFornecedoresList().get(Integer.parseInt(request.getParameter("i"))).getRazao());
+                    tr.setCnpj(Bd.getFornecedoresList().get(Integer.parseInt(request.getParameter("i"))).getCnpj());
+                    tr.setEmail(Bd.getFornecedoresList().get(Integer.parseInt(request.getParameter("i"))).getEmail());
+                    tr.setTelefone(Bd.getFornecedoresList().get(Integer.parseInt(request.getParameter("i"))).getTelefone());
+                    tr.setEndereco(Bd.getFornecedoresList().get(Integer.parseInt(request.getParameter("i"))).getEndereco());*/
+                    int cont = Integer.parseInt(request.getParameter("i")); 
+                    
+                  
+                    
+                    
+                    Bd.getFornecedoresList().remove(tr);
+                    
+                    
+                    
+                    
+                    
+                    // f.setNome(Bd.getFornecedoresList().get(Integer.parseInt(request.getParameter("i"))).getNome());
+                   // f.setNome(Bd.getFornecedoresList().set(Integer.parseInt(request.getParameter("i")), tr.getNome()));
+                   //Bd.getContatosList().set((Integer.parseInt(request.getParameter("i"))),tr.getNome());
+                   //Bd.getContatosList().set((Integer.parseInt(request.getParameter("i"), f.setNome()(request.getParameter("razao")))));
+                   //Bd.getContatosList().set((Integer.parseInt(request.getParameter("i"), f.setNome(request.getParameter("cnpj")))));
+                    
+        response.sendRedirect(request.getRequestURI());     
+         
+    }
+                    
+                
+            }
+    }
+        
+    } catch(Exception ex){
+        
+    }
+  
+%>
+
